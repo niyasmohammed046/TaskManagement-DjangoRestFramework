@@ -29,18 +29,9 @@ INSTALLED_APPS = [
     
     'Frontend',
     'rest_framework',
-    'Api',
+    'rest_framework.authtoken',
+    'accounts',
 ]
-
-
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-        # Add other authentication classes as needed
-    ],
-    # Other settings like permissions, pagination, etc.
-}
 
 
 MIDDLEWARE = [
@@ -71,9 +62,9 @@ TEMPLATES = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-]
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend',
+# ]
 
 WSGI_APPLICATION = 'TaskManagement.wsgi.application'
 
@@ -135,6 +126,10 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
-AUTH_USER_MODEL = 'Api.CustomUser'
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
